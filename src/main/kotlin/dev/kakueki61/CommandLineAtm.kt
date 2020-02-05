@@ -8,9 +8,6 @@ class CommandLineAtm {
         @JvmStatic
         fun main(args : Array<String>) {
             val scanner = Scanner(System.`in`)
-
-            DaggerCommandRouterFactory.create()
-
             while(scanner.hasNextLine()) {
                 DaggerCommandRouterFactory.create().router().route(scanner.nextLine())
             }
