@@ -1,6 +1,8 @@
 package dev.kakueki61
 
-class LoginCommand(private val outputter: Outputter) : SingleArgCommand() {
+import javax.inject.Inject
+
+class LoginCommand @Inject constructor(private val outputter: Outputter) : SingleArgCommand() {
     override fun key(): String {
        return "login"
     }

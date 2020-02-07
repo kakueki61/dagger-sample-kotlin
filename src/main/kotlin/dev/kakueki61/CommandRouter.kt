@@ -2,13 +2,7 @@ package dev.kakueki61
 
 import javax.inject.Inject
 
-class CommandRouter @Inject constructor(command: Command) {
-
-    private val commands = mutableMapOf<String, Command>()
-
-    init {
-        commands[command.key()] = command
-    }
+class CommandRouter @Inject constructor(private val commands: MutableMap<String, Command>) {
 
     fun route(input: String): Command.Status {
         println("input: $input")
