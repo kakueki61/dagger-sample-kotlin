@@ -6,9 +6,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [
-    LoginCommandModule::class,
     HelloWorldModule::class,
-    UserCommandsModule::class,
     SystemOutModule::class
 ])
 interface CommandRouterFactory {

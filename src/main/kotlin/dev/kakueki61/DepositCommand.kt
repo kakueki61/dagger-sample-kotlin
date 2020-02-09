@@ -3,19 +3,18 @@ package dev.kakueki61
 import java.math.BigDecimal
 import javax.inject.Inject
 
-class DepositCommand @Inject constructor(private val db: Database, private val outputter: Outputter) : Command {
+class DepositCommand
+@Inject
+constructor(
+    private val account: Database.Account,
+    private val outputter: Outputter
+) : BigDecimalCommand(outputter) {
     init {
         println("Creating a new $this")
     }
 
-    override fun handleInput(input: List<String>): Command.Status {
-        if (input.size != 2) {
-            return Command.Status.INVALID
-        }
-
-        val account = db.getAccount(input.first())
-        account.deposit(BigDecimal(input[1]))
+    override fun handleAmount(amount: BigDecimal) {
+        account.deposit(amount)
         outputter.output("${account.userName} now has: ${account.balance}")
-        return Command.Status.HANDLED
     }
 }

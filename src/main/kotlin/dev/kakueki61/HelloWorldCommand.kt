@@ -3,11 +3,11 @@ package dev.kakueki61
 import javax.inject.Inject
 
 class HelloWorldCommand @Inject constructor(private val outputter: Outputter) : Command {
-    override fun handleInput(input: List<String>): Command.Status {
+    override fun handleInput(input: List<String>): Command.Result {
         if (input.isNotEmpty()) {
-            return Command.Status.INVALID
+            return Command.Result.invalid()
         }
         outputter.output("world!")
-        return Command.Status.HANDLED
+        return Command.Result.handled()
     }
 }

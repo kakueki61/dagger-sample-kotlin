@@ -4,7 +4,7 @@ import javax.inject.Inject
 
 class CommandRouter @Inject constructor(private val commands: MutableMap<String, Command>) {
 
-    fun route(input: String): Command.Status {
+    fun route(input: String): Command.Result {
         println("input: $input")
         val splitInput = input.split(' ')
         if (splitInput.isEmpty()) {
@@ -14,17 +14,17 @@ class CommandRouter @Inject constructor(private val commands: MutableMap<String,
         val commandKey = splitInput[0]
         val command = commands[commandKey] ?: return invalidCommand(input)
 
-        val status = command.handleInput(splitInput.subList(1, splitInput.size))
-        if (status == Command.Status.INVALID) {
+        val result = command.handleInput(splitInput.subList(1, splitInput.size))
+        if (result.status == Command.Status.INVALID) {
             println("$commandKey: invalid arguments")
         }
-        return status
+        return result
     }
 
-    private fun invalidCommand(input: String): Command.Status {
+    private fun invalidCommand(input: String): Command.Result {
         println(
             String.format("couldn't understand \"%s\". please try again.", input)
         )
-        return Command.Status.INVALID
+        return Command.Result(Command.Status.INVALID, null)
     }
 }
