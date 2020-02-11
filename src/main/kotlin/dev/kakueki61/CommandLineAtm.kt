@@ -22,7 +22,8 @@ class CommandLineAtm {
     @Component(modules = [
         LoginCommandModule::class,
         UserCommandsRouter.InstallationModule::class,
-        SystemOutModule::class
+        SystemOutModule::class,
+        AmountsModule::class
     ])
     interface CommandProcessorFactory {
         fun processor(): CommandProcessor
