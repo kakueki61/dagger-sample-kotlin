@@ -1,5 +1,6 @@
 package dev.kakueki61
 
+import dev.kakueki61.command.Command
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton

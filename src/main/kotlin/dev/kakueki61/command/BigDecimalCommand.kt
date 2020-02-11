@@ -1,5 +1,6 @@
-package dev.kakueki61
+package dev.kakueki61.command
 
+import dev.kakueki61.Outputter
 import java.lang.NumberFormatException
 import java.math.BigDecimal
 

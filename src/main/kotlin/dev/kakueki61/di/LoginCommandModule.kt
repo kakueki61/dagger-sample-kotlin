@@ -4,9 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import dagger.multibindings.StringKey
-import dev.kakueki61.Command
-import dev.kakueki61.HelloWorldCommand
-import dev.kakueki61.LoginCommand
+import dev.kakueki61.command.Command
+import dev.kakueki61.command.LoginCommand
 
 @Module
 abstract class LoginCommandModule {

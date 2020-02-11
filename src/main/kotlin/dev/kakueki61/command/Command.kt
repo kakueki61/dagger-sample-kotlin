@@ -1,4 +1,6 @@
-package dev.kakueki61
+package dev.kakueki61.command
+
+import dev.kakueki61.CommandRouter
 
 /**
  * Logic to process some user input

@@ -1,5 +1,6 @@
 package dev.kakueki61
 
+import dev.kakueki61.command.Command
 import javax.inject.Inject
 
 class CommandRouter @Inject constructor(private val commands: MutableMap<String, Command>) {

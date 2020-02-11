@@ -1,8 +1,10 @@
-package dev.kakueki61
+package dev.kakueki61.command
 
+import dev.kakueki61.Outputter
 import javax.inject.Inject
 
-class HelloWorldCommand @Inject constructor(private val outputter: Outputter) : Command {
+class HelloWorldCommand @Inject constructor(private val outputter: Outputter) :
+    Command {
     override fun handleInput(input: List<String>): Command.Result {
         if (input.isNotEmpty()) {
             return Command.Result.invalid()
