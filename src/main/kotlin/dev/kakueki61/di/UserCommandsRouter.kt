@@ -6,7 +6,7 @@ import dagger.Subcomponent
 import dev.kakueki61.CommandRouter
 import dev.kakueki61.Database
 
-@Subcomponent(modules = [UserCommandsModule::class])
+@Subcomponent(modules = [UserCommandsModule::class, LogoutCommandModule::class])
 interface UserCommandsRouter {
     fun router(): CommandRouter
 
