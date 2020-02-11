@@ -4,6 +4,9 @@ import dev.kakueki61.command.Command
 import javax.inject.Inject
 
 class CommandRouter @Inject constructor(private val commands: MutableMap<String, Command>) {
+    init {
+        println("Creating a new $this")
+    }
 
     fun route(input: String): Command.Result {
         println("input: $input")

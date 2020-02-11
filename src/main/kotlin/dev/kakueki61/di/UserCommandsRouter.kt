@@ -5,7 +5,9 @@ import dagger.Module
 import dagger.Subcomponent
 import dev.kakueki61.CommandRouter
 import dev.kakueki61.Database
+import dev.kakueki61.di.scope.PerSession
 
+@PerSession
 @Subcomponent(modules = [UserCommandsModule::class, LogoutCommandModule::class])
 interface UserCommandsRouter {
     fun router(): CommandRouter

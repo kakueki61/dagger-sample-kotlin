@@ -2,6 +2,7 @@ package dev.kakueki61.command
 
 import dev.kakueki61.Database
 import dev.kakueki61.Outputter
+import dev.kakueki61.WithdrawalLimiter
 import dev.kakueki61.di.qualifier.MaximumWithdrawal
 import dev.kakueki61.di.qualifier.MinimumBalance
 import java.math.BigDecimal
@@ -12,16 +13,16 @@ class WithdrawCommand
 constructor(
     private val account: Database.Account,
     private val outputter: Outputter,
-    @MinimumBalance private val minimumBalance: BigDecimal,
-    @MaximumWithdrawal private val maximumWithdrawal: BigDecimal
+    private val withdrawalLimiter: WithdrawalLimiter,
+    @MinimumBalance private val minimumBalance: BigDecimal
 ) : BigDecimalCommand(outputter) {
     init {
         println("Creating a new $this")
     }
 
     override fun handleAmount(amount: BigDecimal) {
-        if (amount > maximumWithdrawal) {
-            outputter.output("amount must be maximum withdrawal: $amount > $maximumWithdrawal")
+        if (amount > withdrawalLimiter.remainingWithdrawal) {
+            outputter.output("you may not withdraw $amount; you may withdraw ${withdrawalLimiter.remainingWithdrawal} more in this session")
             return
         }
 
@@ -31,6 +32,7 @@ constructor(
             return
         } else {
             account.withdraw(amount)
+            withdrawalLimiter.recordWithdrawal(amount)
             outputter.output("your new balance is ${account.balance}")
         }
     }
